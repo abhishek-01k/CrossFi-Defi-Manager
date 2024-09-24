@@ -1,11 +1,11 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/crossfi-manager/components/ui/card"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/crossfi-manager/components/ui/table"
-import { Badge } from "@/crossfi-manager/components/ui/badge"
-import { Progress } from "@/crossfi-manager/components/ui/progress"
-import { Skeleton } from "@/crossfi-manager/components/ui/skeleton"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Badge } from "@/components/ui/badge"
+import { Progress } from "@/components/ui/progress"
+import { Skeleton } from "@/components/ui/skeleton"
 import { PortfolioElement, PortfolioElementMultiple, PortfolioElementLiquidity, PortfolioElementLeverage, PortfolioElementBorrowLend, PortfolioAsset } from "@sonarwatch/portfolio-core"
 
 type DefiPageProps = {

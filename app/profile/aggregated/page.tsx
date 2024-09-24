@@ -2,10 +2,10 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/crossfi-manager/components/ui/tabs"
-import { Overview } from "@/crossfi-manager/components/overview"
-import { UserNFTComponent, UserTokenComponent } from "@/crossfi-manager/components/profile"
-import { TransferComponent } from "@/crossfi-manager/components/transfers"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Overview } from "@/components/overview"
+import { UserNFTComponent, UserTokenComponent } from "@/components/profile"
+import { TransferComponent } from "@/components/transfers"
 import { fetchAccountData } from "@/config/fetchAccountData"
 import { useSearchParams } from 'next/navigation'
 

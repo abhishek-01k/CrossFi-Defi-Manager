@@ -11,11 +11,11 @@ import { ChevronLeft, ChevronRight, Search } from "lucide-react"
 import { RotatingLines } from "react-loader-spinner"
 
 import { APP_PATHS } from "@/config/Routes"
-import { Button } from "@/crossfi-manager/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/crossfi-manager/components/ui/card"
-import { Input } from "@/crossfi-manager/components/ui/input"
-import { Label } from "@/crossfi-manager/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/crossfi-manager/components/ui/radio-group"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import {
   Table,
   TableBody,
@@ -23,7 +23,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/crossfi-manager/components/ui/table"
+} from "@/components/ui/table"
 
 export default function TokenPage() {
   const router = useRouter()
@@ -92,7 +92,7 @@ export default function TokenPage() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="mb-8 text-3xl font-bold">Aptos Coin Explorer</h1>
+      <h1 className="mb-8 text-3xl font-bold">CrossFi Coin Explorer</h1>
 
       <div className="mb-8">
         <div className="mb-4 flex flex-col gap-4">

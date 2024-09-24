@@ -2,9 +2,9 @@
 
 import { useState } from 'react'
 import { PlusIcon, TrashIcon } from 'lucide-react'
-import { Button } from "@/crossfi-manager/components/ui/button"
-import { Input } from "@/crossfi-manager/components/ui/input"
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/crossfi-manager/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
 import { useRouter } from 'next/navigation'
 
 export default function AggPortfolio() {
@@ -42,8 +42,8 @@ export default function AggPortfolio() {
       <div className="w-full max-w-md">
         <Card className="shadow-lg">
           <CardHeader className="space-y-1 pb-4">
-            <CardTitle className="text-2xl font-bold text-center">Aptos Addresses</CardTitle>
-            <CardDescription className="text-center">Enter multiple Aptos addresses below</CardDescription>
+            <CardTitle className="text-2xl font-bold text-center">CrossFi Addresses</CardTitle>
+            <CardDescription className="text-center">Enter multiple CrossFi addresses below</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -53,9 +53,9 @@ export default function AggPortfolio() {
                     type="text"
                     value={address}
                     onChange={(e) => handleAddressChange(index, e.target.value)}
-                    placeholder={`Aptos Address ${index + 1}`}
+                    placeholder={`CrossFi Address ${index + 1}`}
                     className="flex-grow"
-                    aria-label={`Aptos Address ${index + 1}`}
+                    aria-label={`CrossFi Address ${index + 1}`}
                   />
                   {index > 0 && (
                     <Button

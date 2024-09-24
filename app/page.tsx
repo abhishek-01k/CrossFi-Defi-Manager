@@ -2,8 +2,8 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Button } from "@/crossfi-manager/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/crossfi-manager/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 export default function LandingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -84,13 +84,13 @@ export default function LandingPage() {
             variants={itemVariants}
             className="mb-6 text-5xl font-extrabold tracking-tight lg:text-6xl"
           >
-            Your Ultimate Aptos Portfolio Manager
+            Your Ultimate CrossFi Portfolio Manager
           </motion.h1>
           <motion.p
             variants={itemVariants}
             className="mx-auto mb-8 max-w-2xl text-xl text-muted-foreground"
           >
-            Manage multiple wallets, track NFTs and coins, and optimize your DeFi positions across the Aptos blockchain - all in one powerful platform.
+            Manage multiple wallets, track NFTs and coins, and optimize your DeFi positions across the CrossFi blockchain - all in one powerful platform.
           </motion.p>
           <motion.div
             variants={itemVariants}
@@ -121,12 +121,12 @@ export default function LandingPage() {
           >
             <FeatureCard
               title="Multi-Wallet Management"
-              description="Manage and track multiple Aptos wallets in one place, with aggregated portfolio views."
+              description="Manage and track multiple CrossFi wallets in one place, with aggregated portfolio views."
               icon={<WalletIcon className="h-8 w-8" />}
             />
             <FeatureCard
               title="NFT & Coin Tracking"
-              description="View and manage your NFTs and coins across all your Aptos wallets."
+              description="View and manage your NFTs and coins across all your CrossFi wallets."
               icon={<CoinIcon className="h-8 w-8" />}
             />
             <FeatureCard
@@ -135,8 +135,8 @@ export default function LandingPage() {
               icon={<ChartIcon className="h-8 w-8" />}
             />
             <FeatureCard
-              title="Aptos Name Service"
-              description="Manage your Aptos names, including registration, renewal, and expiration tracking."
+              title="CrossFi Naming Service"
+              description="Manage your XFi names, including registration, renewal, and expiration tracking."
               icon={<TagIcon className="h-8 w-8" />}
             />
             <FeatureCard
@@ -160,10 +160,10 @@ export default function LandingPage() {
           className="mt-24 text-center"
         >
           <motion.h2 variants={itemVariants} className="mb-6 text-3xl font-bold">
-            Ready to Optimize Your Aptos Portfolio?
+            Ready to Optimize Your CrossFi Portfolio?
           </motion.h2>
           <motion.p variants={itemVariants} className="mx-auto mb-8 max-w-2xl text-xl text-muted-foreground">
-            Join thousands of users who are already managing their Aptos assets more efficiently with AptosPortfolio.
+            Join thousands of users who are already managing their CrossFi assets more efficiently with AptosPortfolio.
           </motion.p>
           <motion.div
             variants={itemVariants}

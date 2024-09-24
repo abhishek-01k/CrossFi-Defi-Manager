@@ -12,9 +12,9 @@ import { RotatingLines } from "react-loader-spinner"
 import { APP_PATHS } from "@/config/Routes"
 import { shortenAddress } from "@/lib/shortenAddress"
 import { toast } from "@/hooks/use-toast"
-import { Button } from "@/crossfi-manager/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/crossfi-manager/components/ui/card"
-import { Input } from "@/crossfi-manager/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
 import {
   Table,
   TableBody,
@@ -22,7 +22,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/crossfi-manager/components/ui/table"
+} from "@/components/ui/table"
 
 const CollectionPage = () => {
   const [searchTerm, setSearchTerm] = useState("")
@@ -74,7 +74,7 @@ const CollectionPage = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="mb-8 text-3xl font-bold">Aptos NFT Explorer</h1>
+      <h1 className="mb-8 text-3xl font-bold">CrossFi NFT Explorer</h1>
 
       <div className="mb-8">
         <div className="mb-4 flex gap-4">

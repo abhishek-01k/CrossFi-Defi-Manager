@@ -30,7 +30,7 @@ const SidebarComponent = () => {
   return (
     <div className="w-64  shadow-md">
       <div className="p-4">
-        <h2 className="mb-4 text-xl font-bold">Aptos Explorer</h2>
+        <h2 className="mb-4 text-xl font-bold">CrossFi Explorer</h2>
         <nav>
           {APP_ROUTES.map((route, index) => {
             const Icon = route.Icon

@@ -95,12 +95,12 @@ export  function LoginPage() {
             <Tabs defaultValue="address" onValueChange={(value) => setSearchType(value)}>
               <TabsList className="grid w-full grid-cols-2">
                 <TabsTrigger value="address">Address</TabsTrigger>
-                <TabsTrigger value="name">Aptos Name</TabsTrigger>
+                <TabsTrigger value="name">XFi Name</TabsTrigger>
               </TabsList>
               <TabsContent value="address">
                 <Input
                   type="text"
-                  placeholder="Enter Aptos address"
+                  placeholder="Enter XFi address"
                   value={userInput}
                   onChange={(e) => setUserInput(e.target.value)}
                 />
@@ -108,7 +108,7 @@ export  function LoginPage() {
               <TabsContent value="name">
                 <Input
                   type="text"
-                  placeholder="Enter Aptos name (e.g., kamal.apt)"
+                  placeholder="Enter XFi name (e.g., kamal.apt)"
                   value={userInput}
                   onChange={(e) => setUserInput(e.target.value)}
                 />

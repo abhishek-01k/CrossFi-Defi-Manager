@@ -3,9 +3,9 @@
 import React from "react"
 import { RotatingLines } from "react-loader-spinner"
 
-import CoinInfo from "@/crossfi-manager/components/tokens/CoinInfo"
+import CoinInfo from "@/components/tokens/CoinInfo"
 import { useGetCoinPrice } from "@/models/Coins"
-import CoinTransfers from "@/crossfi-manager/components/tokens/CoinTransfers"
+import CoinTransfers from "@/components/tokens/CoinTransfers"
 
 const TokenPage = ({ params }: { params: any }) => {
     const { tokenId } = params;

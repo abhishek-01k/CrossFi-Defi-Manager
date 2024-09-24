@@ -1,6 +1,6 @@
 import React from "react"
 
-import { NFTCollectionData } from "@/crossfi-manager/components/collections"
+import { NFTCollectionData } from "@/components/collections"
 
 const CollectionIdPage = async ({ params }: { params: any }) => {
   const { collectionId } = params

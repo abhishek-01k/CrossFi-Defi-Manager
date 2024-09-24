@@ -2,7 +2,7 @@
 
 import React from "react"
 
-import { LoginPage } from "@/crossfi-manager/components/LoginPage"
+import { LoginPage } from "@/components/LoginPage"
 
 const ProfilePage = () => {
   return (
