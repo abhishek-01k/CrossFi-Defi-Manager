@@ -18,7 +18,6 @@ import { Input } from "@/components/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 import SocialIcons from "./SocialIcons"
-import { WalletSelector } from "./WalletSelector"
 import { Separator } from "./ui/separator"
 import { Aptos, AptosConfig, Network } from "@aptos-labs/ts-sdk"
 
