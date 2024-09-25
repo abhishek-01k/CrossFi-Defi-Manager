@@ -12,6 +12,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import Provider from "./Provider"
 
+import { ThirdwebProvider } from 'thirdweb/react';
+
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
@@ -47,6 +49,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <GlobalContextProvider>
               <Provider>
+                <ThirdwebProvider>
                 <div className="relative flex min-h-screen flex-col">
                   <SiteHeader />
                   <div className="flex flex-1 flex-row">
@@ -56,6 +59,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                   </div>
                 </div>
                 <TailwindIndicator />
+                </ThirdwebProvider>
               </Provider>
             </GlobalContextProvider>
           </ThemeProvider>
