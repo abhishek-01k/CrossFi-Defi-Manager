@@ -15,7 +15,7 @@ export function SiteHeader() {
     id: 4157
   });
 
-  const client = createThirdwebClient({clientId : process.env.NEXT_PUBLIC_THIRDWEB_APP_KEY! as string})
+  const client = createThirdwebClient({ clientId: 'fa02fb6603c3642ccefecc4a9ce447a4' })
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
       <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
@@ -33,12 +33,12 @@ export function SiteHeader() {
                   variant: "ghost",
                 })}
               >
-                <Icons.twitter className="h-5 w-5 fill-current" />
+                <Icons.twitter className="size-5 fill-current" />
                 <span className="sr-only">Twitter</span>
               </div>
             </Link>
             <ThemeToggle />
-            <ConnectButton client={client} chains={[crossfichain]}/>
+            <ConnectButton client={client} chains={[crossfichain]} />
           </nav>
         </div>
       </div>

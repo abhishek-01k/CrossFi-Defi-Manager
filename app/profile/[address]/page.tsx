@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { GlobalContext } from "@/context/GlobalContext"
 
 import { fetchAccountData } from "@/config/fetchAccountData"
@@ -10,6 +10,8 @@ import { UserNFTComponent, UserTokenComponent } from "@/components/profile"
 import { TransferComponent } from "@/components/transfers"
 import { PortfolioAsset } from "@sonarwatch/portfolio-core";
 import DefiPage from "@/components/defi/DefiComponent"
+import { Button } from "@/components/ui/button"
+import { RotatingLines } from "react-loader-spinner"
 
 const ProfilePage = ({ params }: { params: any }) => {
   const { address } = params
@@ -28,7 +30,6 @@ const ProfilePage = ({ params }: { params: any }) => {
     if (!userAddress) return
     try {
       const res = await fetchAccountData(userAddress)
-      console.log("userAddress", res)
 
       if (res) {
         const {
@@ -50,8 +51,11 @@ const ProfilePage = ({ params }: { params: any }) => {
   }
 
   useEffect(() => {
+    console.log("Params addres", params.address);
+
     if (params.address) {
       handleConnect(params.address)
+      handleGetUsersTokensData({ address: params.address })
     }
   }, [params])
 
@@ -65,7 +69,29 @@ const ProfilePage = ({ params }: { params: any }) => {
   const nftsOwned = NFTsData.filter((asset) => asset.amount > 0).length
 
   console.log("tokensData", NFTsData, tokensData);
+  const [isLoading, setIsLoading] = useState(false);
 
+  const handleGetUsersTokensData = async ({ address }: { address: string }) => {
+    try {
+      setIsLoading(true)
+      console.log("Address", address);
+
+      const res = await fetch('/api/crossFi/fetchUsersTokensData', {
+        method: 'POST',
+        body: JSON.stringify({
+          accountAddress: address,
+        })
+      });
+      const response = await res.json();
+      console.log("Res", response);
+      setIsLoading(false)
+      setTokensData(response.data.items)
+
+    } catch (error) {
+      setIsLoading(false)
+      console.log("Error", error);
+    }
+  }
 
   return (
     <div className="flex flex-1 flex-col p-8">
@@ -101,7 +127,18 @@ const ProfilePage = ({ params }: { params: any }) => {
           <Overview coinTypes={coinTypes} nftsOwned={nftsOwned} address={address} />
         </TabsContent>
         <TabsContent value="Tokens">
-          <UserTokenComponent tokensData={tokensData} />
+          {isLoading ? (
+            <RotatingLines
+              visible={true}
+              width="40"
+              strokeColor="#2c68e7"
+              strokeWidth="5"
+              animationDuration="0.75"
+              ariaLabel="rotating-lines-loading"
+            />
+          ) : (
+            <UserTokenComponent tokensData={tokensData} />
+          )}
         </TabsContent>
         <TabsContent value="NFTs">
           <UserNFTComponent NFTsData={NFTsData} />

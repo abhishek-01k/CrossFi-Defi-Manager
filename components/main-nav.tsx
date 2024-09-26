@@ -15,7 +15,7 @@ export function MainNav({ items }: MainNavProps) {
   return (
     <div className="flex gap-6 md:gap-10">
       <Link href="/" className="flex items-center space-x-2">
-        <Image src="/xfi.png"  height={12} width={12} alt="xfi" />
+        <Image src="/xfi.jpg" height={40} width={40} alt="xfi" className="rounded-xl" />
         <span className="inline-block font-bold">CrossFiManager</span>
       </Link>
     </div>
