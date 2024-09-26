@@ -98,7 +98,7 @@ const ProfilePage = ({ params }: { params: any }) => {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="overview">
-          <Overview coinTypes={coinTypes} nftsOwned={nftsOwned} />
+          <Overview coinTypes={coinTypes} nftsOwned={nftsOwned} address={address} />
         </TabsContent>
         <TabsContent value="Tokens">
           <UserTokenComponent tokensData={tokensData} />
