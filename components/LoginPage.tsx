@@ -115,7 +115,7 @@ export  function LoginPage() {
     <div className="flex h-[80vh] w-full items-center justify-center px-4">
       <Card className="mx-auto w-2/3 max-w-lg">
         <CardHeader>
-          <CardTitle className="text-2xl">CrossFiManager</CardTitle>
+          <CardTitle className="text-2xl">CrossFi Defi Manager</CardTitle>
           <CardDescription>
             Your personalised Bank on CrossFi Blockchain
           </CardDescription>

@@ -17,6 +17,12 @@
 - **Risk Management Tools**: Displays borrowed, supplied, and repaid assets, health factor, and liquidation risks.
 - **Comprehensive DeFi Position Tracking**: Monitor liquidity pools, yield farming, and staked assets.
 
+## Demo Video
+
+Ensure to click on the speaker button
+
+https://github.com/user-attachments/assets/a0021559-5647-4045-8533-b7024d6aa870
+
 ## Features
 
 - **Portfolio Overview**: Track all assets, including tokens, NFTs, DeFi positions, and LP tokens.
@@ -31,9 +37,6 @@
 ## Benefits to the CrossFi Ecosystem
 
 CrossFi-Defi-Manager empowers users by providing a clear, detailed view of assets and activities, fostering greater participation in DeFi. It supports smarter investment decisions and better asset management through data-driven insights.
-
-## Demo Video 
-
 
 ## Getting Started
 
