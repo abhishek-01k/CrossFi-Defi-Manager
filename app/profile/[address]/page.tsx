@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect, useMemo, useState } from "react"
 import { GlobalContext } from "@/context/GlobalContext"
 
 import { fetchAccountData } from "@/config/fetchAccountData"
@@ -17,55 +17,19 @@ const ProfilePage = ({ params }: { params: any }) => {
   const { address } = params
 
   const {
-    setAddress,
-    setNFTsData,
     setTokensData,
-    setTokenTransferData,
-    setNFTsTransferData,
     tokensData,
     NFTsData,
   } = useContext(GlobalContext)
-
-  const handleConnect = async (userAddress: string) => {
-    if (!userAddress) return
-    try {
-      const res = await fetchAccountData(userAddress)
-
-      if (res) {
-        const {
-          current_fungible_asset_balances: userTokensDetails,
-          current_token_ownerships_v2: userNFTDetails,
-          fungible_asset_activities: userTokenTransferDetails,
-          token_activities_v2: userNFTTransferDetails,
-        } = res
-
-        if (userTokensDetails) setTokensData(userTokensDetails)
-        if (userNFTDetails) setNFTsData(userNFTDetails)
-        if (userTokenTransferDetails)
-          setTokenTransferData(userTokenTransferDetails)
-        if (userNFTTransferDetails) setNFTsTransferData(userNFTTransferDetails)
-      }
-    } catch (error) {
-      console.log("Error", error)
-    }
-  }
 
   useEffect(() => {
     console.log("Params addres", params.address);
 
     if (params.address) {
-      handleConnect(params.address)
       handleGetUsersTokensData({ address: params.address })
     }
   }, [params])
 
-  // const { current_fungible_asset_balances } = TokenData
-  // const tokensData = current_fungible_asset_balances
-
-  // const { current_token_ownerships_v2 } = NFTData
-  // const NFTsData = current_token_ownerships_v2
-
-  const coinTypes = tokensData.filter((asset) => asset.amount > 0).length
   const nftsOwned = NFTsData.filter((asset) => asset.amount > 0).length
 
   console.log("tokensData", NFTsData, tokensData);
@@ -92,6 +56,14 @@ const ProfilePage = ({ params }: { params: any }) => {
       console.log("Error", error);
     }
   }
+
+  const tokenType = useMemo(() => {
+    return tokensData.filter((asset) => asset.balance > 0).length
+  }, [tokensData])
+
+  const nativeTokenData = useMemo(() => {
+    return tokensData.find((asset) => asset.contract_address == '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
+  }, [tokensData])
 
   return (
     <div className="flex flex-1 flex-col p-8">
@@ -124,7 +96,7 @@ const ProfilePage = ({ params }: { params: any }) => {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="overview">
-          <Overview coinTypes={coinTypes} nftsOwned={nftsOwned} address={address} />
+          <Overview coinTypes={tokenType} nftsOwned={nftsOwned} address={address} nativeTokenData={nativeTokenData} />
         </TabsContent>
         <TabsContent value="Tokens">
           {isLoading ? (

@@ -6,3 +6,5 @@ export const BASE_TESTNET_URL =
 export const NODEREAL_URL = "https://mainnet-aptos-api.nodereal.io"
 
 export const CROSSFI_COVALENT_API = "https://api.covalenthq.com/v1"
+
+export const XFISCAN_API = "https://test.xfiscan.com/api/1.0"

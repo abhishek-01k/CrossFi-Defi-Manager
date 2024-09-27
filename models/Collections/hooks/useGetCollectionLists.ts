@@ -4,14 +4,14 @@ import { fetchCollectionLists } from "../queries"
 
 export const useGetCollectionLists = ({
   page,
-  pageSize,
+  limit,
 }: {
   page: number
-  pageSize: number
+  limit: number
 }) => {
   return useQuery({
-    queryKey: ["CollectionLists", page, pageSize],
-    queryFn: () => fetchCollectionLists({ page, pageSize }),
+    queryKey: ["CollectionLists", page, limit],
+    queryFn: () => fetchCollectionLists({ page, limit }),
     placeholderData: (prevData) => prevData || [],
   })
 }

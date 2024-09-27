@@ -1,5 +1,3 @@
 export * from "./useGetCoinLists"
 export * from "./useGetCoinPrice"
-export * from "./getCoinDetailsByName"
-export * from "./getCoinDetailsBySymbol"
 export * from "./getCoinTransfers"

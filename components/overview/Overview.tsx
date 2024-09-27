@@ -1,7 +1,6 @@
 "use client"
 
-import React, { useContext, useEffect, useState } from "react"
-import { GlobalContext } from "@/context/GlobalContext"
+import React, { useEffect, useState } from "react"
 import {
   Line,
   LineChart,
@@ -16,21 +15,16 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 const Overview = ({
   coinTypes,
   nftsOwned,
-  address
+  address,
+  nativeTokenData
 }: {
   coinTypes: any
   nftsOwned: any
-  address : string
+  address: string
+  nativeTokenData: any
 }) => {
-  const {
-    activeTab,
-    setTokensData,
-    tokensData,
-    NFTsData,
-    setNFTsData,
-  } = useContext(GlobalContext)
 
-  const [portfolioData, setPortfolioData] = useState<any[]>( [
+  const [portfolioData, setPortfolioData] = useState<any[]>([
     { date: "2023-01-01", value: 1000 },
     { date: "2023-02-01", value: 1200 },
     { date: "2023-03-01", value: 1100 },
@@ -38,7 +32,7 @@ const Overview = ({
     { date: "2023-05-01", value: 1300 },
     { date: "2023-06-01", value: 1600 },
   ]);
-  const [totalPortfolioValue,setTotalPortfolioValue] = useState(0);
+  const [totalPortfolioValue, setTotalPortfolioValue] = useState(0);
   const coinBalances = []
   const nfts = []
 
@@ -52,8 +46,6 @@ const Overview = ({
       </LineChart>
     </ResponsiveContainer>
   )
-
-  console.log(portfolioData,"b");
 
   useEffect(() => {
 
@@ -84,26 +76,26 @@ const Overview = ({
 
         const data = await response.json(); // Parse the JSON response
         console.log(data);
-        if(data.length !== 0){
-        const updatedportfolioData = data.map((item: any) => {
-          return {
-            date: item.timestamp.split(" ")[0],
-            value: item.balance_usd,
-            tokens_count: item.tokens_count,
-          };
-        });
+        if (data.length !== 0) {
+          const updatedportfolioData = data.map((item: any) => {
+            return {
+              date: item.timestamp.split(" ")[0],
+              value: item.balance_usd,
+              tokens_count: item.tokens_count,
+            };
+          });
 
-        setPortfolioData(updatedportfolioData);
-      } else {
-        setPortfolioData( [
-          { date: "2023-01-01", value: 1000 },
-          { date: "2023-02-01", value: 1200 },
-          { date: "2023-03-01", value: 1100 },
-          { date: "2023-04-01", value: 1400 },
-          { date: "2023-05-01", value: 1300 },
-          { date: "2023-06-01", value: 1600 },
-        ]);
-      }
+          setPortfolioData(updatedportfolioData);
+        } else {
+          setPortfolioData([
+            { date: "2023-01-01", value: 1000 },
+            { date: "2023-02-01", value: 1200 },
+            { date: "2023-03-01", value: 1100 },
+            { date: "2023-04-01", value: 1400 },
+            { date: "2023-05-01", value: 1300 },
+            { date: "2023-06-01", value: 1600 },
+          ]);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -112,20 +104,20 @@ const Overview = ({
     fetchData();
   }, []);
 
-  const d = portfolioData ?  portfolioData : '';
-  console.log(d,totalPortfolioValue,"a");
+  const d = portfolioData ? portfolioData : '';
 
+  const nativeTokenBalance = nativeTokenData ? (nativeTokenData.balance / (10 ** nativeTokenData.contract_decimals)) : 0
 
   return (
     <div>
       <div className="mb-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         <Card>
           <CardHeader>
-            <CardTitle>Total Portfolio Value</CardTitle>
+            <CardTitle>XFI Balance</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-2xl font-bold">
-              ${totalPortfolioValue}
+              ${nativeTokenBalance.toFixed(2)}
             </p>
           </CardContent>
         </Card>
