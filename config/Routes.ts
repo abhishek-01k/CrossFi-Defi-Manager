@@ -1,10 +1,11 @@
-import { BarChart, Coins, Image, User } from "lucide-react"
+import { BarChart, Coins, Image, TrendingUp, User } from "lucide-react"
 
 export const APP_PATHS = {
   AGGPORTFOLIO: "/aggregated-portfolio",
   PROFILE: "/profile",
   TOKENS: "/tokens",
   NFTS: "/collections",
+  DEFI: "/defi",
 }
 
 export const APP_ROUTES = [
@@ -27,5 +28,10 @@ export const APP_ROUTES = [
     title: "NFTS",
     Icon: Image,
     href: APP_PATHS.NFTS,
+  },
+  {
+    title: "DeFi",
+    Icon: TrendingUp,
+    href: APP_PATHS.DEFI,
   }
 ]

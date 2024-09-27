@@ -76,7 +76,7 @@ const CollectionPage = () => {
                 </TableRow>
               </TableHeader>
               <TableBody className="h-[50vh]">
-                {!collectionLists.length && <div>No Data available</div>}
+                {!collectionLists.length && <RotatingLines visible={true} width="40" strokeColor="#2c68e7" strokeWidth="5" animationDuration="0.75" ariaLabel="rotating-lines-loading" />}
                 {collectionLists.length && collectionLists.map((collection: any, index: number) => {
                   return (
                     <TableRow
@@ -86,10 +86,10 @@ const CollectionPage = () => {
                       <TableCell
                         className="cursor-pointer hover:underline"
                       >
-                        {collection.name ?? '-'}
+                        {collection.name ?? 'Undefined'}
                       </TableCell>
                       <TableCell>
-                        {collection.tokenSymbol ?? '-'}
+                        {collection.tokenSymbol ?? 'Undefined'}
                       </TableCell>
                       <TableCell
                         className="cursor-pointer text-blue-500 hover:underline"

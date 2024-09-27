@@ -70,7 +70,14 @@ export default function TokenPage() {
                 </TableRow>
               </TableHeader>
               <TableBody className="h-[50vh]">
-                {!coinLists.length && <div>No Data available</div>}
+                {!coinLists.length && <RotatingLines
+                  visible={true}
+                  width="40"
+                  strokeColor="#2c68e7"
+                  strokeWidth="5"
+                  animationDuration="0.75"
+                  ariaLabel="rotating-lines-loading"
+                />}
                 {!!coinLists.length && coinLists.map((coin: any, index: number) => (
                   <TableRow key={index}>
                     <TableCell>{coin.name}</TableCell>
