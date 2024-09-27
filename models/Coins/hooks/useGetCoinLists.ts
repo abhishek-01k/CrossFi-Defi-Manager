@@ -4,14 +4,14 @@ import { fetchCoinLists } from "../queries"
 
 export const useGetCoinLists = ({
   page,
-  pageSize,
+  limit,
 }: {
   page: number
-  pageSize: number
+  limit: number
 }) => {
   return useQuery({
-    queryKey: ["Coins Lists", page, pageSize],
-    queryFn: () => fetchCoinLists({ page, pageSize }),
+    queryKey: ["Coins Lists", page, limit],
+    queryFn: () => fetchCoinLists({ page, limit }),
     placeholderData: (prevData) => prevData || [],
   })
 }
