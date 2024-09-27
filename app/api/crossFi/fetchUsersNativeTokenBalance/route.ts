@@ -1,28 +1,23 @@
 import { NextRequest, NextResponse } from "next/server"
-import { getNFTCollectionDataByCollectionNameQuery } from "@/queries/NFTCollections"
 
-import { BASE_MAINNET_URL } from "@/config/url.config"
+import { CROSSFI_COVALENT_API } from "@/config/url.config"
 
 export async function POST(req: NextRequest) {
   try {
-    const { collectionName } = await req.json()
+    const { accountAddress } = await req.json()
 
-    const operationsDoc =
-      getNFTCollectionDataByCollectionNameQuery(collectionName)
+    const url = `${CROSSFI_COVALENT_API}/crossfi-evm-testnet/address/${accountAddress}/balances_native/?key=cqt_rQdDRhX8FP9gX7jB9rhBgkY46Pxq`
 
-    const response = await fetch(BASE_MAINNET_URL, {
-      method: "POST",
+    const response = await fetch(url, {
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        query: operationsDoc,
-        variables: {},
-        operationName: "MyQuery",
-      }),
     })
 
     const result = await response.json()
+
+    console.log("REsult >>>>", result)
 
     if (result.errors) {
       return NextResponse.json({ errors: result.errors }, { status: 400 })

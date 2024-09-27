@@ -5,7 +5,7 @@ import { XFISCAN_API } from "@/config/url.config"
 export async function POST(req: NextRequest) {
   try {
     const { page, limit } = await req.json()
-    const url = `${XFISCAN_API}/tokens?page=${page}&limit=${limit}&tokenType=CFC-20&sort=-holderCount`
+    const url = `${XFISCAN_API}/tokens?page=${page}&limit=${limit}&tokenType=CFC-721&sort=-holderCount`
 
     const response = await fetch(url, {
       method: "GET",

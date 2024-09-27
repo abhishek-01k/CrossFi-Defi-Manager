@@ -2,19 +2,25 @@ import { NODEREAL_URL } from "@/config/url.config"
 
 type CollectionListsPayload = {
   page: number
-  pageSize: number
+  limit: number
 }
 
 export const fetchCollectionLists = async ({
   page,
-  pageSize,
+  limit,
 }: CollectionListsPayload) => {
-  const url = `${NODEREAL_URL}/api/collection?page=${page}&pageSize=${pageSize}&network=Mainnet`
-  const res = await fetch(url)
-  const response = await res.json()
-  if (response.msg === "success") {
+  try {
+    const res = await fetch("/api/crossFi/fetchNFTList", {
+      method: "POST",
+      body: JSON.stringify({
+        page,
+        limit,
+      }),
+    })
+    const response = await res.json()
     return response.data
-  } else {
+  } catch (error) {
+    console.log("Error", error)
     throw new Error("Error in fetching Coin details")
   }
 }
