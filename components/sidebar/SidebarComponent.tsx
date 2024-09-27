@@ -19,11 +19,15 @@ import {
 import { APP_ROUTES } from "@/config/Routes"
 
 import { Button } from "../ui/button"
-import { Separator } from "../ui/separator"
+import { Separator } from "../ui/separator";
+
+import { useActiveAccount } from "thirdweb/react"
 
 const SidebarComponent = () => {
   const { activeTab, setActiveTab, address } = useContext(GlobalContext)
 
+  const activeAccount = useActiveAccount();
+  const connectedaddress = activeAccount?.address;
   const pathname = usePathname()
   console.log("router", pathname)
 
@@ -48,7 +52,7 @@ const SidebarComponent = () => {
           })}
 
           <Separator />
-
+          <Link href={`/profile/${connectedaddress}`}>
           <Button
             variant={activeTab === "portfolio" ? "default" : "ghost"}
             className="mb-2 w-full justify-start"
@@ -57,15 +61,7 @@ const SidebarComponent = () => {
             <PieChart className="mr-2 size-4" />
             Portfolio
           </Button>
-
-          <Button
-            variant={activeTab === "defi" ? "default" : "ghost"}
-            className="mb-2 w-full justify-start"
-            onClick={() => setActiveTab("defi")}
-          >
-            <TrendingUp className="mr-2 size-4" />
-            DeFi
-          </Button>
+          </Link>
         </nav>
       </div>
     </div>

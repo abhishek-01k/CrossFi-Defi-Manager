@@ -32,6 +32,9 @@
 
 CrossFi-Defi-Manager empowers users by providing a clear, detailed view of assets and activities, fostering greater participation in DeFi. It supports smarter investment decisions and better asset management through data-driven insights.
 
+## Demo Video 
+
+
 ## Getting Started
 
 1. **Clone the Repository**: 

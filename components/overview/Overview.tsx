@@ -20,7 +20,7 @@ const Overview = ({
 }: {
   coinTypes: any
   nftsOwned: any
-  address: string
+  address: any
   nativeTokenData: any
 }) => {
 
