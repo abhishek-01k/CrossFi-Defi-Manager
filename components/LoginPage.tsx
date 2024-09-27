@@ -20,12 +20,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import SocialIcons from "./SocialIcons"
 import { Separator } from "./ui/separator"
 import { Aptos, AptosConfig, Network } from "@aptos-labs/ts-sdk"
-import { ethers } from "ethers";
-import {
-  resolveAddress,
-  BASENAME_RESOLVER_ADDRESS,
-} from "thirdweb/extensions/ens";
-import { createThirdwebClient, defineChain } from "thirdweb"
+import { ethers, JsonRpcProvider } from "ethers";
 
 export  function LoginPage() {
   const {
@@ -44,36 +39,31 @@ export  function LoginPage() {
   const config = new AptosConfig({ network: Network.TESTNET });
   const aptos = new Aptos(config);
 
-  const provider = new ethers.JsonRpcProvider("https://crossfi-testnet.public.blastapi.io/", {
+  const provider = new JsonRpcProvider("https://crossfi-testnet.public.blastapi.io", {
     name: "crossfi-testnet",
     chainId: 4157,
     ensAddress: "0x6944c57331f9C3eFC210F0D49bE1d417452cEe3B",
+    ensNetwork: 4157
   });
 
-  
+  // registery address - 0xb127c78d906d9e645dba801aca6786c89ac01f10 or 0x6944c57331f9C3eFC210F0D49bE1d417452cEe3B
+
+//   const test = async () => {
+//     const blockNumber = "latest";
+// const block = await provider.getBlock(blockNumber)
+// console.log("block", block);
+
+// const b = await provider.getResolver("kamal.xfi");
+// const a = await  provider.lookupAddress("0x7Daf54Df0f6f6393dF3A9cd6A5795423ba9FaB3f");
+// console.log("kamala", a , b)
+//   }
+
+  // test();
   console.log("provider", provider)
 
   const handleConnect = async () => {
     if (!userInput) return
     let resolvedAddress = userInput;
-
-    const a = await  provider.lookupAddress("kamal.xfi");
-    console.log("kamala", a)
-
-    const crossfichain = defineChain({
-      id: 4157
-    });
-  
-    const client = createThirdwebClient({ clientId: '50fec9cf6c4b9da360d1104e89d9e7f8' });
-
-    // const newaddr = await resolveAddress({
-    //   client,
-    //   name: "kamal.xfi",
-    //   resolverAddress: "0xb127c78D906d9E645DBa801ACA6786C89Ac01f10",
-    //   resolverChain: crossfichain,
-    // });
-
-
 
     const isValidAddress = ethers.isAddress(userInput);
 
@@ -83,7 +73,8 @@ export  function LoginPage() {
       if (!resolver) {
         throw new Error("No resolutions found for the provided name.");
       }
-      resolvedAddress = await resolver.getAddress();
+      resolvedAddress = await resolver.getAddress() as string;
+      console.log("resolvedAddress", resolvedAddress)
     } else if (isValidAddress) {
       // Input is a valid address, try to find the associated name
       const name = await provider.lookupAddress(userInput);
