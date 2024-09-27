@@ -39,7 +39,7 @@ export default function LandingPage() {
             whileHover={{ scale: 1.1 }}
             className="text-2xl font-bold text-primary"
           >
-            AptosPortfolio
+            CrossFi Portfolio
           </motion.div>
           <div className="hidden space-x-4 md:block">
             <Button variant="ghost">Features</Button>
@@ -184,14 +184,14 @@ export default function LandingPage() {
         className="bg-muted mt-24 py-12 text-center text-muted-foreground"
       >
         <div className="container mx-auto">
-          <p>&copy; 2023 AptosPortfolio. All rights reserved.</p>
+          <p>&copy; 2024 CrossFiDefiManager. All rights reserved.</p>
         </div>
       </motion.footer>
     </div>
   )
 }
 
-function FeatureCard({ title, description, icon }) {
+function FeatureCard({ title, description, icon } : any) {
   return (
     <motion.div
       variants={{
@@ -222,7 +222,7 @@ function FeatureCard({ title, description, icon }) {
   )
 }
 
-function WalletIcon(props) {
+function WalletIcon(props: any) {
   return (
     <svg
       {...props}
@@ -243,7 +243,7 @@ function WalletIcon(props) {
   )
 }
 
-function CoinIcon(props) {
+function CoinIcon(props : any) {
   return (
     <svg
       {...props}
@@ -264,7 +264,7 @@ function CoinIcon(props) {
   )
 }
 
-function ChartIcon(props) {
+function ChartIcon(props : any) {
   return (
     <svg
       {...props}
@@ -284,7 +284,7 @@ function ChartIcon(props) {
   )
 }
 
-function TagIcon(props) {
+function TagIcon(props : any) {
   return (
     <svg
       {...props}
@@ -304,7 +304,7 @@ function TagIcon(props) {
   )
 }
 
-function HistoryIcon(props) {
+function HistoryIcon(props : any) {
   return (
     <svg
       {...props}
@@ -325,7 +325,7 @@ function HistoryIcon(props) {
   )
 }
 
-function LayersIcon(props) {
+function LayersIcon(props : any) {
   return (
     <svg
       {...props}

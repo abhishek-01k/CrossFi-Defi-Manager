@@ -22,7 +22,7 @@ export default function DefiPage({ address }: DefiPageProps) {
       try {
         const response = await fetch(`https://portfolio-api.sonar.watch/v1/portfolio/fetch?useCache=false&address=${address}&addressSystem=move`, {
           headers: {
-            'Authorization': 'Bearer X0M7dvPB5QC184xW2gFO9usN'
+            'Authorization': 'Bearer'
           }
         })
         const data = await response.json()

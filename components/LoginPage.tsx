@@ -20,6 +20,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import SocialIcons from "./SocialIcons"
 import { Separator } from "./ui/separator"
 import { Aptos, AptosConfig, Network } from "@aptos-labs/ts-sdk"
+import { ethers } from "ethers"
 
 export  function LoginPage() {
   const {
@@ -38,21 +39,36 @@ export  function LoginPage() {
   const config = new AptosConfig({ network: Network.TESTNET });
   const aptos = new Aptos(config);
 
+  const provider = new ethers.providers.JsonRpcProvider({
+    url: "YOUR_RPC_URL",
+    chainId: YOUR_CHAIN_ID,
+    ensAddress: "0x6944c57331f9C3eFC210F0D49bE1d417452cEe3B", // Set the correct ENS registry address
+  });
+  
+
   const handleConnect = async () => {
     if (!userInput) return
-    let resolvedAddress = userInput
+    let resolvedAddress = userInput;
 
-    if (searchType === "name") {
+    const isValidAddress = ethers.isAddress(userInput);
 
-      const owner = await aptos.getOwnerAddress({name: userInput});
-      if (!owner) {
-        console.log("User not found")
-        return
-      } else {
-        console.log("Owner", owner)
-        resolvedAddress = owner.toString();
+    if (searchType === "name" && !isValidAddress) {
+      // Assume input is a name, attempt to resolve it
+      const resolver = await provider.getResolver(inputValue);
+      if (!resolver) {
+        throw new Error("No resolutions found for the provided name.");
       }
+      resolvedAddress = await resolver.getAddress();
+    } else if (isValidAddress) {
+      // Input is a valid address, try to find the associated name
+      const name = await provider.lookupAddress(inputValue);
+      if (name) {
+        resolvedAddress = inputValue;
+      }
+    } else {
+      throw new Error("Invalid input. Please provide a valid address or name.");
     }
+
 
     setAddress(resolvedAddress)
     try {
