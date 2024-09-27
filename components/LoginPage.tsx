@@ -20,7 +20,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import SocialIcons from "./SocialIcons"
 import { Separator } from "./ui/separator"
 import { Aptos, AptosConfig, Network } from "@aptos-labs/ts-sdk"
-import { ethers } from "ethers"
+import { ethers } from "ethers";
+import {
+  resolveAddress,
+  BASENAME_RESOLVER_ADDRESS,
+} from "thirdweb/extensions/ens";
+import { createThirdwebClient, defineChain } from "thirdweb"
 
 export  function LoginPage() {
   const {
@@ -39,31 +44,51 @@ export  function LoginPage() {
   const config = new AptosConfig({ network: Network.TESTNET });
   const aptos = new Aptos(config);
 
-  const provider = new ethers.providers.JsonRpcProvider({
-    url: "YOUR_RPC_URL",
-    chainId: YOUR_CHAIN_ID,
-    ensAddress: "0x6944c57331f9C3eFC210F0D49bE1d417452cEe3B", // Set the correct ENS registry address
+  const provider = new ethers.JsonRpcProvider("https://crossfi-testnet.public.blastapi.io/", {
+    name: "crossfi-testnet",
+    chainId: 4157,
+    ensAddress: "0x6944c57331f9C3eFC210F0D49bE1d417452cEe3B",
   });
+
   
+  console.log("provider", provider)
 
   const handleConnect = async () => {
     if (!userInput) return
     let resolvedAddress = userInput;
 
+    const a = await  provider.lookupAddress("kamal.xfi");
+    console.log("kamala", a)
+
+    const crossfichain = defineChain({
+      id: 4157
+    });
+  
+    const client = createThirdwebClient({ clientId: '50fec9cf6c4b9da360d1104e89d9e7f8' });
+
+    // const newaddr = await resolveAddress({
+    //   client,
+    //   name: "kamal.xfi",
+    //   resolverAddress: "0xb127c78D906d9E645DBa801ACA6786C89Ac01f10",
+    //   resolverChain: crossfichain,
+    // });
+
+
+
     const isValidAddress = ethers.isAddress(userInput);
 
     if (searchType === "name" && !isValidAddress) {
-      // Assume input is a name, attempt to resolve it
-      const resolver = await provider.getResolver(inputValue);
+
+      const resolver = await provider.getResolver(userInput);
       if (!resolver) {
         throw new Error("No resolutions found for the provided name.");
       }
       resolvedAddress = await resolver.getAddress();
     } else if (isValidAddress) {
       // Input is a valid address, try to find the associated name
-      const name = await provider.lookupAddress(inputValue);
+      const name = await provider.lookupAddress(userInput);
       if (name) {
-        resolvedAddress = inputValue;
+        resolvedAddress = userInput;
       }
     } else {
       throw new Error("Invalid input. Please provide a valid address or name.");
@@ -123,7 +148,7 @@ export  function LoginPage() {
               <TabsContent value="name">
                 <Input
                   type="text"
-                  placeholder="Enter XFi name (e.g., kamal.apt)"
+                  placeholder="Enter XFi name (e.g, kamal.xfi)"
                   value={userInput}
                   onChange={(e) => setUserInput(e.target.value)}
                 />
